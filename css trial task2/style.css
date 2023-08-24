@@ -1,0 +1,203 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  height: 100vh;
+  perspective: 1000px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background: #333;
+  color: #fff;
+  margin-bottom: 100px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.flip-btn {
+  margin: 0 2px;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  background: #4caf50;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Card Flip */
+.card {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+  background: #ccc;
+  margin: 20px 0 50px;
+}
+
+.card div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card.is-flipped-vertical {
+  transform: rotateX(180deg);
+}
+.card.is-flipped-horizontal {
+  transform: rotateY(180deg);
+}
+.card.is-flipped-diagonal {
+  transform: rotateX(360deg) rotateY(180deg);
+}
+
+.card__face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.card__face--front {
+  background: url('image1.jpg');
+  background-size: cover;
+}
+
+.card__face--back {
+  background: url('image2.jpg');
+  background-size: cover;
+  transform: rotateY(180deg);
+}
+
+/* Custom Cursor */
+.cursor {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid #333;
+  transition: all 0.3s ease;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition: background 0.3s ease;
+}
+
+.expand {
+  background: #333;
+  transform: scale(2);
+}
+
+/* Pseudo Elements */
+.box {
+  width: 150px;
+  height: 150px;
+  background: #f2f2f2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  position: relative;
+}
+
+.box::before,
+.box::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: #333;
+  transition: all 0.5s ease;
+}
+
+.box::before {
+  top: 0;
+  left: 0;
+  transform-origin: left;
+}
+
+.box::after {
+  bottom: 0;
+  right: 0;
+  transform-origin: right;
+}
+
+.box:hover::before,
+.box:hover::after {
+  width: 0;
+}
+
+/*  */
+
+.cube {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  transform-style: preserve-3d;
+  transform: rotateX(-30deg);
+  animation: spin 5s infinite linear;
+}
+.cube div {
+  color: #7d7d7d;
+}
+
+@keyframes spin {
+  from {
+    transform: rotateX(-30deg) rotateY(0deg);
+  }
+  to {
+    transform: rotateX(-30deg) rotateY(360deg);
+  }
+}
+
+.side {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  font-size: 60px;
+  color: white;
+  text-align: center;
+  line-height: 200px;
+}
+
+.front {
+  transform: rotateY(0deg) translateZ(100px);
+}
+.back {
+  transform: rotateX(180deg) translateZ(100px);
+}
+.right {
+  transform: rotateY(90deg) translateZ(100px);
+}
+.left {
+  transform: rotateY(-90deg) translateZ(100px);
+}
+.top {
+  transform: rotateX(90deg) translateZ(100px);
+}
+.bottom {
+  transform: rotateX(-90deg) translateZ(100px);
+}
